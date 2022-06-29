@@ -1,0 +1,33 @@
+dnsenum -enum leafyetsutdio.xyz //yaparak tarama başlatabiliriz. dns taraması yapar
+
+dnsmap subdomain taraması için kullanılır.--> dnsmap leafyetstudio.xyz yaparak tarama başlatabiliriz. wordlist ile tarama yapmak için dnsmap -w wordlist.uzantı site
+
+dnswalk zone transferlerini gösterir --> dnswalk domain.com. yaparak bakabiliriz. domain sonuna . koymak gerekli
+
+dnsrecon -d domain -t goo ---> subdomain, ip bulmaya yarar. buradaki goo ifadesi google aracılığıyla verilen domaine ait subdomainleri listeler. -t parametresi de type anlamına gelir
+burada goo yerine tld yazarsak alan adı ve alan adına ait ip adresleri listelenir 
+dnsrecon -r ip1-ip2 yaparak o ip adreslerine ait domainleri listeleyebiliriz.
+
+dnsdict6 domain.com --> yaparak o domaine ait subdomainleri listeleyebiliriz
+
+-shodan örneklerle anlatım-
+hostname:.de proftpd port:21  --> .de uzantısı yani almanyada proftpd ftp servisini kullananları listeledik. örneğin proftpd 1.21.9 sürümünde açık çıktı diyelim. bu servisin açıklı sürümünü kullanan siteleri listelemek için proftpd 1.21.9 gibi yazabiliriz.
+joomla tinybrowser source:"metasploit" --> joomladaki tinybrowser açığını aradık. burada source:"metasploit" anahtarı, bu açığı (daha doğrusu açık var ise) metasploit exploitini aradık
+
+
+fierce ile bir domaine ait ip adresleri ve subdomainleri listeleyebiliriz. fierce -dns domain.com ile tarama başlatabiliriz.
+
+goofile ile belirli bir domaine ait dosyaları listeleyebiliriz. --> goofile -d domain.com -f txt  --> burada -d dedikten sonra domaini, -f dedikten sonra hangi uzantıda dosya arayacağımızı yazıyoruz. verdiğim örnek taramada txt dosyalarını aradı
+
+dmitry -winsepfb -o bilgi.txt domain.com --> domain.com'a tarama başlattık. tarama sonuçlarını -o ile bilgi.txt adlı dosyaya kayıt ettik. birçok domain ve hosting bilgisi önümüze ulaştı. terminale dmitry yazarak diğer parametreleri öğrenebiliriz
+
+wafw00f domain.com --> sitenin hangi firewall yazılımı ile korunduğuna bakmak için kullanırız. waf00f -l yazarak hangi firewall sistemlerini tespit edebildiğini görebiliriz.
+
+BlindElephant.py, sitenin hangi hazır yazılım sistemini kullandığını gösterir. BlindElephant.py www.domain.com type --> bu şekilde taramamızı başlatıyoruz. joomla,wordpress,drupal gibi şüphelendiğimiz sistemleri tek tek bulana kadar deniyoruz. eğer bilmiyorsak guess yazıyoruz.
+
+dirb http://site.com wordlist.txt --> yaparak taramamızı gerçekleştirebiliriz. dirb aracı, dosya ve klasör arar. wordlist içerisini açarak teker teker arama yapar. wordlist eklemezsen kendi wordlistini kullanır. istersen sadece site değil sitenin klasörünü de http://site.com/klasör ile tarayabilirsin. http kullanman gerekli!
+
+searchsploit ile platforma ait exploit arayabiliriz.örneğin: searchsploit windows local privilege yazarak windows için local hak yükseltme araçlarını listeleyebiliriz. decription bölümünde isimleri, path kısmında ise exploitin bulunduğu yol görünmektedir.
+
+Kurumlara ait e-posta bulma --> metasploiti açtıktan sonra use auxiliary/gather/search_email_collector yazıyoruz daha sonra set DOMAIN domain.com yazarak domain belirliyoruz ve run deyip taramamızı başlatıyoruz
+
