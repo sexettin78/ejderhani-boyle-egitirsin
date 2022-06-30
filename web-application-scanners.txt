@@ -1,0 +1,41 @@
+w3af, python ile yazılmış bir scannerdir. en ayırıcı özelliği, tarama stratejimizi kendimizin oluşturmamızdır. konsola w3af yazarak çalıştırabiliriz.
+
+vega aracı oldukça hızlı bir scannerdir. w3af'da olduğu gibi bunda da kendiniz profiller ile hareket edebilirsiniz.
+
+nikto, zafiyet taraması yapmak için kullanılır. konsola nikto yazarak parametrelere bakabilirsiniz.
+nikto parametreleri:
+root+: bu parametre ile istediğiniz root dizinini tarayabilirsiniz. kullanım: nikto -h www.site.com -r /dizin
+port+: bu parametre ile istediğiniz port üzerinden tarama gerçekleştirebilirsiniz. kullanım: nikto -h www.site.com -p [port]
+ssl: bu parametre ile ssl desteği olup olmadığını kontrol ederiz. kullanım: nikto -h www.site.com -ssl
+Cgidirs: cgi klasörlerini tarar. c büyük yazılmalı. kullanım şekilleri: nikto -h www.site.com -C all ya da nikto -h www.site.com -C /dizin ya da nikto -h www.site.com -C none
+evasion+: bu parametre ile evasion(atlatma) teknikleri kullanabilirsiniz. waf sistemleri için kullanılmaktadır. kullanımı: nikto -h www.site.com -e 573 //burada 5,7,3 numaralı atlatma tekniklerini kullan dedik. nikto -h yazarak bu numaraları ve ne anlama geldiğini öğrenebilirsiniz.
+tuning+: bu parametre ile istediğiniz zafiyet türünü belirleyebilirsiniz. buda taramanın kısa ve öz olmasını sağlar. kullanım: nikto -h www.site.com -T 8 //8 numarası Command Execution açığını temsil eder. nikto -h yazarak açıklara bakabilirsiniz
+generic+: full tarama yapar. önerilmez çünkü sistem log tutar. kullanım: nikto -h www.site.com -g
+id+: bu parametre sistemde Authentication etkinse kullanıcı adı ve parola belirterek tarama yapabilirsiniz. kullanım: nikto -h www.site.com -i user:pass
+
+joomscan parametrelerini görmek için konsola joomscan yazıyoruz. tarama başlatmak için: joomscan -u site.com yazacağız. vulnerable?no derse açık yoktur. vulnerable?yes derse açık mevcuttur.
+
+wapiti, python dilinde yazılmış zafiyet tarama aracıdır. wapiti yazarak parametrelere ulaşabilirsiniz. wapiti -u https://site.com yazarak tarama başlatabiliriz. sadece xss taraması yapmak için: wapiti https://site.com -m all, xss:get
+
+dirb, klasör taraması yapar (wordlist ile) dirb site.com yaparak teste başlayabiliriz.
+
+skipfish, genelde hızlı tarama ve raporlama sistemiyle ön plana çıkan bir scanner aracıdır. skipfish -h yazarak parametrelere bakabilirsiniz. kullanım: skipfish -o Desktop/çıktı http://site.com yazarak taramamızı başlatıyoruz ve çıktımızı çıktı klasörüne kayıt ediyoruz.
+
+wpscan, wordpress sistemlerinde açık taramak için kullanılır. wpscan yazarak parametreleri ve kullanımını görebilirsiniz. parametreleri:
+-enumerate p : plugin listeler
+-enumerate t : tema listeler
+-enumerate u : sisteme ait kullanıcıları listeler
+-enumerate tt : timthub'leri listeler
+-wordlist list.txt : sözlük saldırısı yapar
+-wordlist list.txt -username kullaniciadi : kullanıcı adında sözlük saldırısı yapar
+-proxy ip:port : saldırı yaparken belirttiğiniz proxy kullanır
+örnek tarama: wpscan -url www.site.com -enumerate p
+
+uniscan bir web scanner aracıdır. parametreleri görüntülemek için konsola uniscan yazın. kullanımı : uniscan -u http://site.com -qwds //burada -u ile site belirttik. -qwds ile birden çok özellik ekliyoruz. parametreleri:
+-q : Dizin taraması
+-w : Dosya taraması
+-d : Dinamik araç taraması
+-s : Statik araç taraması
+taramaları birden fazla site üzerinde yapmak için: uniscan -f urllist.txt -qweds burada urllist dosyası içine site adreslerini yazmamız gerekiyor
+uniscan-gui yazarak uniscan'ı gui şeklinde başlatabiliriz
+uniscan -i "ip:xxx.xxx.xxx.xxx" şeklinde ip taraması da başlatabiliriz. cat sites.txt yazarak, ekran çıktımızı alabiliriz. (veriler sites.txt içerisine kayıt edilir.)
